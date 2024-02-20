@@ -66,18 +66,22 @@ describe("fetch call helper functions", () => {
             expect(() => returnsPromise(postNewDog)).not.toThrowError();
             done();
         });
+        test("should make a request to the correct endpoint", async () => {
+            const res = await postNewDog()
+            expect(res.url).toBe("/dogs")
+        });
         test("should set the correct method", async() => {
             expect.assertions(1);
             const res = await postNewDog();
-            expect(/POST/i.test(res.options.method)).toBe(true);
+            expect(/^POST$/i.test(res.options.method)).toBe(true);
         })
         test("should set the appropriate headers", async () => { 
             expect.assertions(2);
             const res = await postNewDog();
             const [[key, value]] = Object.entries(res.options.headers);
             console.log(key, value)
-            expect(/Content-Type/i.test(key)).toBe(true);
-            expect(/application\/x-www-form-urlencoded/i.test(value)).toBe(true);
+            expect(/^Content-Type$/i.test(key)).toBe(true);
+            expect(/^application\/x-www-form-urlencoded$/i.test(value)).toBe(true);
         });
         test("should send the appropriate body", async () => {
             expect.assertions(3);
@@ -93,12 +97,16 @@ describe("fetch call helper functions", () => {
             expect(() => returnsPromise(postNewDogV2)).not.toThrowError();
             done();
         });
+        test("should make a request to the correct endpoint", async () => {
+            const res = await postNewDogV2()
+            expect(res.url).toBe("/dogs")
+        });
         test("should set the appropriate headers", async () => { 
             expect.assertions(2);
             const res = await postNewDogV2("Rosie",1);
             const [[key, value]] = Object.entries(res.options.headers);
-            expect(/Content-Type/i.test(key)).toBe(true);
-            expect(/application\/x-www-form-urlencoded/i.test(value)).toBe(true);
+            expect(/^Content-Type$/i.test(key)).toBe(true);
+            expect(/^application\/x-www-form-urlencoded$/i.test(value)).toBe(true);
         });
         test("should send the appropriate body", async () => {
             expect.assertions(5);

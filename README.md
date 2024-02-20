@@ -1,7 +1,8 @@
 # Practice: Writing Fetch Reqeusts
 
-In this practice, you will be writing fetch requests that will interact with the
-server from the HTML Templating practice. 
+This practice tests your knowledge of *traditional* server endpoints and 
+your use of the [fetch] method. Your fetch requests will interact with the server 
+from the HTML Templating practice. 
 
 ## Set up
 
@@ -11,14 +12,18 @@ Clone the project from the [starter]. Run `npm  install`. Run the tests with
 ## Background and Context
 
 You will be making fetch requests already integrated with your HTML page. After
-you start the server with `npm start` you can begin writing functions. Clicking
+you start the server with `npm start` you can begin writing your code. Clicking
 the labeled buttons on the homepage at `localhost:5001` should redirect you to
-the matching endpoint.
+the matching endpoint. 
+
+***IMPORTANT***: the asynchronous code has already been implemented for you (i.e. 
+no need for `.then` or `async await` in this practice). Your job is to correctly 
+implement the correct `URL` and `options`. 
 
 Make all changes in `/assets/js/your-code.js`. No need to restart the server on
 this project, however, you will need to refresh the browser to get the updated
-copy of your JavaScript file from the server. After you save in VS Code, always
-refresh the browser to see any changes. 
+copy of your JavaScript file from the server. Therefore, after you save in VS Code, 
+always refresh the browser to see any changes. 
 
 As review, the two parameters you need to use fetch correctly are outlined
 below: 
@@ -41,7 +46,9 @@ fetch(url, options);
 ```
 
 The body of a request can be formatted correctly by passing in an object to the
-[URLSesarchParams] API's constructor function. 
+[URLSearchParams] API's constructor function.  This API is built to work with fetch
+to replicate form submissions using HTML. The key-value pairs of your object must match
+what the server is expecting.
 
 Write your code in `assets/js/your-code.js`. Do not change the code in any other
 files. 
@@ -49,7 +56,9 @@ files.
 
 ## Phase 1: getAllDogs()
 
-Return a fetch call to `GET /dogs`. 
+Return a fetch call to `GET /dogs`. Implemented correctly, clicking this 
+button in your browser at `localhost:5001` should redirect you to the page 
+with all of the dogs. 
 
 Run the test specs with `npm test`.
 
@@ -59,16 +68,15 @@ Return a fetch call to the server's endpoint for the dog with an id of 2.
 
 ## Phase 3: postNewDog() 
 
-Return a fetch call to post a new dog with a `name` and `age`. Use the
-[URLSearchParams] API to make the body of your request as seen below. What will
-the `Content-Type` header be?
+Let's hard code a new dog using fetch. If you have a dog of your own, this is 
+your chance to add your pooch to the server! Return a fetch call to post a new dog 
+with a `name` and `age`. Use the [URLSearchParams] API to make the body of your 
+request. Take note: the server is expecting a `name` and `age` key from the 
+request's body, and anything else will result in a server error. 
 
-```js
-const body = new URLSearchParams({
-    name: "Rosie",
-    age: 1
-});
-```
+The [URLSearchParams] API works with the fetch API to mimic a form submission. Which 
+`Content-Type` is used for form submissions? Use it in this request
+as well. 
 
 You will know you sent the correct fetch request when the browser is redirected
 to the new dog's page. 
@@ -97,4 +105,6 @@ token used to valdiate any requests made to this endpoint.
 With the correct fetch request, you should be redirected to `GET /dogs` without
 the deleted dog.
 
+[starter]: https://github.com/appacademy/practice-for-week-08-fetch-from-server
 [URLSearchParams]: https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/URLSearchParams
+[fetch]: https://developer.mozilla.org/en-US/docs/Web/API/fetch
